@@ -1,0 +1,97 @@
+import React from 'react';
+import { API_URL } from '../../config';
+import Loading from '../common/Loading';
+import { handleResponse, renderChangePercent } from '../../helpers';
+import './Detail.css';
+
+class Detail extends React.Component {
+constructor() {
+	super();
+
+	this.state = {
+		currency: {},
+		loading: false,
+		error: null,
+	};
+}
+
+	componentDidMount() {
+		const currencyId = this.props.match.params.id;
+		this.fetchCurrency(currencyId);
+	}
+
+componentWillReceiveProps(nextProps) {
+	if (this.props.location.pathname !== nextProps.location.pathname) {
+		const newCurrency = nextProps.match.params.id;
+		this.fetchCurrency(newCurrency);
+	}
+}
+	fetchCurrency(currencyId) {
+		this.setState({ loading: true });
+
+		fetch(`${API_URL}/cryptocurrencies/${currencyId}`)
+		.then(handleResponse)
+		.then((currency) => {
+			this.setState ({
+				loading: false,
+				error: null,
+				currency,
+			});
+		})
+		.catch((error) => {
+			this.setState({
+				loading: false,
+				error: error.errorMessage,
+			})
+		});
+	}
+
+	render() {
+		const { loading, error, currency } = this.state;
+		
+		if (loading) {
+			return <div className="loading-container"><Loading /></div>
+		}
+		// render only error component, if error message is set
+		if (error) {
+			return <div className="error">{error}</div>
+		}
+
+		return(
+			<div className="Detail">
+				<h1 className="Detail-heading">
+					{currency.name} ({currency.symbol})
+				</h1>
+
+				<div className="Detail-container">
+					<div className="Detail-item">
+						<span className="Detail-title Bold">Price</span>
+						<span className="Detail-dollar Bold">$ </span><span className="Bold">{currency.price}</span>
+					</div>
+					<div className="Detail-item">
+						<span className="Detail-title Bold">Rank</span>
+						#<span className="Bold">{currency.rank}</span>
+					</div>
+					<div className="Detail-item">
+					<span className="Detail-title Bold">24H Change</span>
+						 {renderChangePercent(currency.percentChange24h)}
+					</div>
+					<div className="Detail-item">
+						<span className="Detail-title Bold">Market Cap</span>
+						<span className="Detail-dollar Bold">$</span> <span className="Bold">{currency.marketCap}</span>
+					</div>
+					<div className="Detail-item">
+						<span className="Detail-title Bold">24H</span>
+						<span className="Detail-dollar Bold">$</span> <span className="Bold">{currency.volume24h}</span>
+					</div>
+					<div className="Detail-item">
+						<span className="Detail-title Bold">Total supply</span>
+						<span className="Bold">{currency.totalSupply}</span>
+					</div>
+				</div>
+			</div>
+		);
+	}
+}
+
+export default Detail;

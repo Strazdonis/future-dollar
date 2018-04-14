@@ -1,0 +1,26 @@
+.NotFound {
+  width: 100%;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.NotFound-title {
+  font-weight: 400;
+  color:#ffaa22;;
+}
+
+.NotFound-link {
+  display: inline-block;
+  margin-top: 40px;
+  color: #666666;
+  text-decoration: none;
+  border: 1px solid #ffaa22;
+  border-radius: 4px;
+  padding: 18px;
+  transition: background-color .5s;
+}
+
+.NotFound-link:hover {
+  background-color:#ffaa22;
+  color:#000;
+}
