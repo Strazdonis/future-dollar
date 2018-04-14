@@ -1,2 +1,1 @@
-"# future-dollar" 
-"# future-dollar" 
+A simple cryptocurrency tracking platform made with React.
