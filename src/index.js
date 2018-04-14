@@ -5,7 +5,7 @@ import Header from './components/common/Header';
 import List from './components/list/List';
 import NotFound from './components/notfound/NotFound';
 import Detail from './components/details/Detail';
-
+import Footer from './components/common/Footer';
 
 import './index.css';
 
@@ -20,6 +20,7 @@ return	(
 				<Route path="/currency/:id" component={Detail} exact />
 				<Route component={NotFound} />
 			</Switch>
+			<Footer />
 		</div>
 	</BrowserRouter>
 		);

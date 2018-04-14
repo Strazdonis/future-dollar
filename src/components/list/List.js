@@ -1,5 +1,5 @@
 import React from 'react'; //react engine
-import { render } from 'react-dom'; //rendering engine
+
 import { handleResponse } from '../../helpers.js'; //useful modules
 import { API_URL } from '../../config'; //URL base
 import Loading from '../common/Loading'; //pre-loader/loading animation

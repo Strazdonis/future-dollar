@@ -1,21 +1,3 @@
-/*
-  Application colors
-
-  text:               #fff;
-  text-secondary:     #9cb3c9;
-
-  error-red:          #d64d96;
-
-  green:              #3cd483;
-
-  indigo-light:       #1f364d;
-  indigo-normal:      #0f273d;
-  indigo-dark:        #0c2033;
-
-  blue-normal:        #4997e5;
-  blue-dark:          #457cb2;
-*/
-
 /* Load Open Sans font from Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
 
