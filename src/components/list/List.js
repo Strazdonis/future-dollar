@@ -52,6 +52,12 @@ handlePaginationClick(direction) { //what to do when user clicks the pagination 
 
 	let nextPage = this.state.page; //get the page variable from state
 	nextPage = direction === 'next' ? nextPage + 1 : nextPage - 1; //increment next page if "next" otherwise decrement
+	if (direction === 'last') {
+		nextPage = this.state.totalPages;
+	}
+	else if (direction === 'first') {
+		nextPage = 1;
+	}
 	this.setState({page: nextPage}, () => { 
 		this.fetchCurrencies(); //after clicking the page and going to another actual page, re-fetch currencies with a new page variable
 	});
